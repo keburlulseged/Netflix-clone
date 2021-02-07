@@ -1,12 +1,13 @@
 .profileScreen {
-  height: 100vh;
+  height: 100%;
   color: white;
 }
 
 .profileScreen__body {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 70%;
+  height: 100vh;
   margin-left: auto;
   margin-right: auto;
   padding-top: 8%;
@@ -22,6 +23,7 @@
 
 .profileScreen__info {
   display: flex;
+  height: 100%;
 }
 
 .profileScreen__info > img {
