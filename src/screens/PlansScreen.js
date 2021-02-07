@@ -3,7 +3,7 @@ import db from "../firebase";
 import "./PlansScreen.css";
 
 function PlansScreen() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     db.collection("products")
@@ -17,7 +17,7 @@ function PlansScreen() {
           priceSnap.docs.forEach((price) => {
             products[productDoc.id].prices = {
               priceId: price.id,
-              priceData: price.data,
+              priceData: price.data(),
             };
           });
         });
@@ -27,7 +27,23 @@ function PlansScreen() {
 
   console.log(products);
 
-  return <div className="plansScreen"></div>;
+  return (
+    <div className="plansScreen">
+      {Object.entries(products).map(([productId, productData]) => {
+        // TODO: add logic to check if user subscription is actiove
+        return (
+          <div className="plansScreen__plan">
+            <div className="plansScreen__info">
+              <h5>{productData.name}</h5>
+              <h6>{productData.description}</h6>
+            </div>
+
+            <button>Subscribe</button>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default PlansScreen;
